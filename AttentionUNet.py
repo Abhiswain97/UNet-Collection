@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from GenericBlocks import DoubleConvSame, Encoder 
+from GenericBlocks import DoubleConvSame, Encoder
 
 
 class AttentionDecoder(nn.Module):
@@ -53,7 +53,7 @@ class AttentionBlock(nn.Module):
 
         # Conv 1x1 for `psi` the output after `g` + `x`
         self.psi = nn.Conv2d(
-            in_channels=2 * inter_shape,
+            in_channels=inter_shape,
             out_channels=1,
             kernel_size=1,
             stride=1,
@@ -69,7 +69,7 @@ class AttentionBlock(nn.Module):
         gate = self.conv_g(g)
 
         # `theta_x` + `gate`
-        add = torch.cat([gate, theta_x], dim=1)
+        add = theta_x + gate
 
         # ReLU on the add operation
         relu = torch.relu(add)
