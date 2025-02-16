@@ -88,9 +88,10 @@ class UNet(nn.Module):
 
         return outputs
 
+
 class UNet_2(nn.Module):
     """UNet with same padding"""
-    
+
     def __init__(self, c_in, c_out):
         super(UNet_2, self).__init__()
 

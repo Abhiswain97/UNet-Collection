@@ -59,7 +59,7 @@ class AttentionBlock3D(nn.Module):
             stride=1,
         )
 
-        # For upsampling the attention output to size of `x`
+        # For up sampling the attention output to size of `x`
         self.upsample = nn.Upsample(scale_factor=2)
 
     def forward(self, g, x):
@@ -69,7 +69,7 @@ class AttentionBlock3D(nn.Module):
         gate = self.conv_g(g)
 
         # `theta_x` + `gate`
-        add = torch.cat([gate, theta_x], dim=1)
+        add = gate + theta_x
 
         # ReLU on the add operation
         relu = torch.relu(add)
